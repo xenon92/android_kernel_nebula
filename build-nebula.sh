@@ -31,7 +31,7 @@ date="date"
 
 
 # Kernel compilation specific details
-KERNEL_BUILD="nebula-v1.1-xenon92-`date '+%Y%m%d-%H-%M'`"
+KERNEL_BUILD="nebula-v1.2-xenon92-`date '+%Y%m%d-%H-%M'`"
 TOOLCHAIN=~/kernel/toolchains/arm-eabi-4.6/bin/arm-eabi
 
 
