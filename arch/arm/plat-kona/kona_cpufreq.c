@@ -274,9 +274,6 @@ if (kona_cpufreq->l_p_j_ref == 0 && (pdata->flags & KONA_CPUFREQ_UPDATE_LPJ)) {
 }
 #endif
 
-	/* Disable OC by default */
-	policy->max = 1200000;
-
 	return 0;
 
 err_cpufreqs_table:
