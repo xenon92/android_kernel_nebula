@@ -44,7 +44,7 @@ $cyan
 if [ "$askclean" == "1" ]
 then
         echo -e "\n\nCleaning... \n\n"
-        make clean
+        make clean mrproper
 fi
 
 rm -rf arch/arm/boot/boot.img-zImage
