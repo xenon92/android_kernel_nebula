@@ -124,7 +124,6 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 config CPU_FREQ_DEFAULT_GOV_ZZMOOVE
 	bool "zzmoove"
 	select CPU_FREQ_GOV_ZZMOOVE
-	select CPU_FREQ_GOV_PERFORMANCE
 	help
 	Use the CPUFreq governor 'zzmoove' as default.
 
@@ -229,10 +228,11 @@ config CPU_FREQ_GOV_ZZMOOVE
 	tristate "'zzmoove' cpufreq governor"
 	depends on CPU_FREQ
 	help
-	  'zzmoove' - So what you can expect now from this thingy is a
-	  battery-friendly behaving hotplug conservative governor which
-	  uses a frequency lookup table for faster upscaling (so called
-	  "smooth scaling"). So this is more a energy-safer than a performer.
+	 'zzmoove' - based on cpufreq_conservative, using predefined
+          frequency lookup tables and optimized scaling triggers instead of
+          % frequency steps to get smooth up/downscaling dependant on CPU load.
+
+          If in doubt, say N.
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
