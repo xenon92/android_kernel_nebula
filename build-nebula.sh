@@ -32,7 +32,7 @@ date="date"
 
 
 # Kernel compilation specific details
-KERNEL_BUILD="nebula-v1.2-xenon92-`date '+%Y%m%d-%H%M'`"
+KERNEL_BUILD="nebula-v1.3-xenon92-`date '+%Y%m%d-%H%M'`"
 TOOLCHAIN=~/kernel/toolchains/linaro-4.7-13.04/bin/arm-linux-gnueabihf-
 
 
