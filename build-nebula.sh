@@ -31,7 +31,7 @@ date="date"
 
 
 # Kernel compilation specific details
-KERNEL_BUILD="nebula-v1.2-xenon92-`date '+%Y%m%d-%H-%M'`"
+KERNEL_BUILD="nebula-v1.2-xenon92-`date '+%Y%m%d-%H%M'`"
 TOOLCHAIN=~/kernel/toolchains/arm-eabi-4.6/bin/arm-eabi
 
 
@@ -204,6 +204,7 @@ rm -rf META-INF
 rm -rf system
 rm boot.img
 cd ../../
+rm -rf ../arch/arm/boot/boot.img-zImage
 rm -rf bootimg_processing
 rm -rf flashablezip/system
 echo ""
