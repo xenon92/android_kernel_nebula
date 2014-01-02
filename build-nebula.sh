@@ -11,10 +11,11 @@ read askclean
 
 
 # Export paths and variables in shell
-export PATH=$PATH:~/kernel/toolchains/arm-eabi-4.6/bin
+export PATH=$PATH:~/kernel/toolchains/linaro-4.7-13.04/bin
 export ARCH=arm
 export SUBARCH=arm
-export CROSS_COMPILE=arm-eabi-
+export CROSS_COMPILE=arm-linux-gnueabihf-
+export KBUILD_BUILD_USER="xenon92"
 
 
 # Specify colors for shell
@@ -32,7 +33,7 @@ date="date"
 
 # Kernel compilation specific details
 KERNEL_BUILD="nebula-v1.2-xenon92-`date '+%Y%m%d-%H%M'`"
-TOOLCHAIN=~/kernel/toolchains/arm-eabi-4.6/bin/arm-eabi
+TOOLCHAIN=~/kernel/toolchains/linaro-4.7-13.04/bin/arm-linux-gnueabihf-
 
 
 # Variables
