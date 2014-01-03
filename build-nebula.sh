@@ -15,7 +15,6 @@ export PATH=$PATH:~/kernel/toolchains/linaro-4.7-13.04/bin
 export ARCH=arm
 export SUBARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabihf-
-export KBUILD_BUILD_USER="xenon92"
 
 
 # Specify colors for shell
@@ -32,6 +31,7 @@ date="date"
 
 
 # Kernel compilation specific details
+export KBUILD_BUILD_USER="xenon92"
 KERNEL_BUILD="nebula-v1.3-xenon92-`date '+%Y%m%d-%H%M'`"
 TOOLCHAIN=~/kernel/toolchains/linaro-4.7-13.04/bin/arm-linux-gnueabihf-
 
@@ -127,6 +127,7 @@ echo ""
 # Processing modules to be packed along with final boot.img
 cd output/flashablezip
 mkdir system
+mkdir system/app
 mkdir system/lib
 mkdir system/lib/modules
 cd ../../
@@ -175,6 +176,7 @@ echo "Making output flashable zip and packing everything..."
 cd output/flashablezip/
 mkdir outputzip
 mkdir outputzip/system
+mkdir outputzip/system/app
 mkdir outputzip/system/lib
 mkdir system
 mkdir system/lib
@@ -182,6 +184,7 @@ mkdir system/lib
 cp -avr META-INF/ outputzip/
 cp -avr system/lib/modules/ outputzip/system/lib/
 cp ../bootimg_processing/outputbootimg/boot.img outputzip/boot.img
+cp ../performance_control_app/PerformanceControl-2.1.8.apk outputzip/system/app/PerformanceControl-2.1.8.apk
 
 echo "Moving old zip file..."
 mkdir old_builds_zip

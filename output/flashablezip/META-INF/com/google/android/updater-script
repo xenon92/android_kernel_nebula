@@ -41,6 +41,8 @@ ui_print("Fixing modules...");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p19",  "/system");
 delete_recursive("/system/lib/modules");
 package_extract_dir("system/lib/modules", "/system/lib/modules");
+package_extract_dir("system/app", "/system/app");
+set_perm(0, 0, 0644, "/system/app/PerformanceControl-2.1.8.apk");
 unmount("/system");
 show_progress(1.000000, 0);
 ui_print("");
