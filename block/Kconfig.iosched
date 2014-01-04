@@ -63,6 +63,13 @@ config IOSCHED_VR
 	scheduler. It is the best scheduler for benchmarks. It is said
 	to be a bit unstable.
 
+config IOSCHED_ZEN
+	tristate "Zen I/O scheduler"
+	default y
+	---help---
+	FCFS, dispatches are back-inserted, deadlines ensure fairness.
+	Should work best with devices where there is no travel delay.
+
 config CFQ_GROUP_IOSCHED
 	bool "CFQ Group Scheduling support"
 	depends on IOSCHED_CFQ && BLK_CGROUP
@@ -95,6 +102,9 @@ choice
 	config DEFUALT_ROW
 		bool "ROW" if IOSCHED_ROW=y
 
+	config DEFAULT_ZEN
+		bool "ZEN" if IOSCHED_ZEN=y   
+
 endchoice
 
 config DEFAULT_IOSCHED
@@ -105,6 +115,7 @@ config DEFAULT_IOSCHED
 	default "sio" if DEFAULT_SIO
 	default "row" if DEFAULT_ROW
 	default "vr" if DEFAULT_VR
+	default "zen" if DEFAULT_ZEN
 
 endmenu
 
