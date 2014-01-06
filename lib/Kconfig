@@ -99,6 +99,7 @@ config LZO_COMPRESS
 config LZO_DECOMPRESS
 	tristate
 
+<<<<<<< HEAD
 config LZ4_COMPRESS
 	tristate
 
@@ -108,6 +109,8 @@ config LZ4HC_COMPRESS
 config LZ4_DECOMPRESS
 	tristate
 
+=======
+>>>>>>> parent of 0d65862... lib: add support for LZ4-compressed kernel
 source "lib/xz/Kconfig"
 
 #
@@ -130,10 +133,6 @@ config DECOMPRESS_XZ
 
 config DECOMPRESS_LZO
 	select LZO_DECOMPRESS
-	tristate
-
-config DECOMPRESS_LZ4
-	select LZ4_DECOMPRESS
 	tristate
 
 #
