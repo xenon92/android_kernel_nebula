@@ -99,20 +99,6 @@ config LZO_COMPRESS
 config LZO_DECOMPRESS
 	tristate
 
-<<<<<<< HEAD
-config LZ4_COMPRESS
-	tristate
-
-config LZ4HC_COMPRESS
-	tristate
-
-config LZ4_DECOMPRESS
-	tristate
-
-=======
->>>>>>> parent of 0d65862... lib: add support for LZ4-compressed kernel
-source "lib/xz/Kconfig"
-
 #
 # These all provide a common interface (hence the apparent duplication with
 # ZLIB_INFLATE; DECOMPRESS_GZIP is just a wrapper.)
