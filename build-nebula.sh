@@ -44,7 +44,11 @@ MODULES=./output/flashablezip/system/lib/modules
 $cyan
 if [ "$askclean" == "1" ]
 then
+	echo ""
+	echo ""
         echo -e "\n\nCleaning... \n\n"
+	echo ""
+	echo ""
         make clean mrproper
 fi
 
@@ -64,7 +68,11 @@ cp ../drivers/voicesolution/VoiceSolution.ko drivers/voicesolution/
 
 # Making config for nebula kernel
 $violet
+echo ""
+echo ""
 echo "Making config for nebula kernel..."
+echo ""
+echo ""
 make nebula_i9082_defconfig
 echo ""
 echo ""
@@ -75,7 +83,11 @@ echo ""
 
 # Compiling kernel
 $red
+echo ""
+echo ""
 echo "Compiling kernel..."
+echo ""
+echo ""
 make -j4
 echo ""
 echo ""
@@ -86,7 +98,11 @@ echo ""
 
 # Processing boot.img
 $yellow
+echo ""
+echo ""
 echo "Processing boot.img..."
+echo ""
+echo ""
 mkdir output/bootimg_processing
 cp bootimg/stockbootimg/boot.img output/bootimg_processing/boot.img
 cd output/bootimg_processing
@@ -98,7 +114,11 @@ mkdir outputbootimg
 mkdir boot
 cd unpack
 
+echo ""
+echo ""
 echo "Extracting boot.img..."
+echo ""
+echo ""
 ../../../processing_tools/bootimg_tools/unmkbootimg -i ../boot.img
 cd ../boot
 gzip -dc ../unpack/ramdisk.cpio.gz | cpio -i
@@ -112,7 +132,11 @@ echo ""
 
 # Copying the required files to make final boot.img
 $green
+echo ""
+echo ""
 echo "Copying output files to make the final boot.img..."
+echo ""
+echo ""
 cp arch/arm/boot/zImage arch/arm/boot/boot.img-zImage
 rm output/bootimg_processing/bootimage/unpack/boot.img-zImage
 cp arch/arm/boot/boot.img-zImage output/bootimg_processing/unpack/boot.img-zImage	
@@ -135,7 +159,11 @@ cd ../../
 find -name '*.ko' -exec cp -av {} $MODULES/ \;
 
 $red
+echo ""
+echo ""
 echo "Stripping Modules..."
+echo ""
+echo ""
 cd $MODULES
 for m in $(find . | grep .ko | grep './')
 do echo $m
@@ -151,7 +179,11 @@ echo ""
 
 # Making final boot.img
 $blue
+echo ""
+echo ""
 echo "Making output boot.img..."
+echo ""
+echo ""
 cd output/bootimg_processing/outputbootimg
 
 ../../../processing_tools/bootimg_tools/mkbootfs ../boot | gzip > ../unpack/boot.img-ramdisk-new.gz
@@ -172,7 +204,11 @@ echo ""
 
 # Making output flashable zip
 $green
+echo ""
+echo ""
 echo "Making output flashable zip and packing everything..."
+echo ""
+echo ""
 cd output/flashablezip/
 mkdir outputzip
 mkdir outputzip/system
@@ -186,11 +222,19 @@ cp -avr system/lib/modules/ outputzip/system/lib/
 cp ../bootimg_processing/outputbootimg/boot.img outputzip/boot.img
 cp ../performance_control_app/PerformanceControl-2.1.8.apk outputzip/system/app/PerformanceControl-2.1.8.apk
 
+echo ""
+echo ""
 echo "Moving old zip file..."
+echo ""
+echo ""
 mkdir old_builds_zip
 mv outputzip/*.zip old_builds_zip/
 
+echo ""
+echo ""
 echo "Packing files into zip..."
+echo ""
+echo ""
 cd outputzip
 zip -r $KERNEL_BUILD.zip *
 echo ""
@@ -202,7 +246,11 @@ echo ""
 
 # Cleaning
 $blue
+echo ""
+echo ""
 echo "Cleaning..."
+echo ""
+echo ""
 
 rm -rf META-INF
 rm -rf system
