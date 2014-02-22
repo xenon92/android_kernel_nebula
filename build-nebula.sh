@@ -32,7 +32,7 @@ date="date"
 
 # Kernel compilation specific details
 export KBUILD_BUILD_USER="xenon92"
-KERNEL_BUILD="nebula-v1.5-xenon92-`date '+%Y%m%d-%H%M'`"
+KERNEL_BUILD="nebula-v1.6-xenon92-`date '+%Y%m%d-%H%M'`"
 TOOLCHAIN=~/kernel/toolchains/linaro-4.7-13.04/bin/arm-linux-gnueabihf-
 
 
