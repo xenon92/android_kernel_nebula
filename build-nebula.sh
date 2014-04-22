@@ -11,10 +11,10 @@ read askclean
 
 
 # Export paths and variables in shell
-export PATH=$PATH:~/kernel/toolchains/linaro-4.7-13.04/bin
+export PATH=$PATH:~/kernel/toolchains/linaro-4.7.4-14.04/bin
 export ARCH=arm
 export SUBARCH=arm
-export CROSS_COMPILE=arm-linux-gnueabihf-
+export CROSS_COMPILE=arm-cortex_a9-linux-gnueabihf-
 
 
 # Specify colors for shell
@@ -32,8 +32,8 @@ date="date"
 
 # Kernel compilation specific details
 export KBUILD_BUILD_USER="xenon92"
-KERNEL_BUILD="nebula-v2.0-xenon92-`date '+%Y%m%d-%H%M'`"
-TOOLCHAIN=~/kernel/toolchains/linaro-4.7-13.04/bin/arm-linux-gnueabihf-
+KERNEL_BUILD="nebula-v2.1-xenon92-`date '+%Y%m%d-%H%M'`"
+TOOLCHAIN=~/kernel/toolchains/linaro-4.7.4-14.04/bin/arm-cortex_a9-linux-gnueabihf-
 
 
 # Variables
@@ -88,7 +88,7 @@ echo ""
 echo "Compiling kernel..."
 echo ""
 echo ""
-make -j4
+make -j8
 echo ""
 echo ""
 echo "==========================================================="
