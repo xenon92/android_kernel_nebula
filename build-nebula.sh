@@ -58,6 +58,7 @@ rm -rf arch/arm/boot/boot.img-zImage
 rm -rf output/bootimg_processing
 rm -rf output/flashablezip/system
 rm -rf output/boot.img
+rm -rf output/flashablezip/kernel/zImage
 echo ""
 echo ""
 echo "==========================================================="
@@ -260,6 +261,7 @@ rm -rf META-INF
 rm -rf system
 rm -rf kernel
 rm boot.img
+rm ../kernel/zImage
 cd ../../
 rm -rf ../arch/arm/boot/boot.img-zImage
 rm -rf bootimg_processing
