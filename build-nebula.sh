@@ -99,50 +99,50 @@ echo ""
 
 
 # Processing boot.img
-$yellow
-echo ""
-echo ""
-echo "Processing boot.img..."
-echo ""
-echo ""
-mkdir output/bootimg_processing
-cp bootimg/stockbootimg/boot.img output/bootimg_processing/boot.img
-cd output/bootimg_processing
-rm -rf unpack
-rm -rf output
-rm -rf boot
-mkdir unpack
-mkdir outputbootimg
-mkdir boot
-cd unpack
+# $yellow
+# echo ""
+# echo ""
+# echo "Processing boot.img..."
+# echo ""
+# echo ""
+# mkdir output/bootimg_processing
+# cp bootimg/stockbootimg/boot.img output/bootimg_processing/boot.img
+# cd output/bootimg_processing
+# rm -rf unpack
+# rm -rf output
+# rm -rf boot
+# mkdir unpack
+# mkdir outputbootimg
+# mkdir boot
+# cd unpack
 
-echo ""
-echo ""
-echo "Extracting boot.img..."
-echo ""
-echo ""
-../../../processing_tools/bootimg_tools/unmkbootimg -i ../boot.img
-cd ../boot
-gzip -dc ../unpack/ramdisk.cpio.gz | cpio -i
-cd ../../../
-echo ""
-echo ""
-echo "==========================================================="
-echo ""
-echo ""
+# echo ""
+# echo ""
+# echo "Extracting boot.img..."
+# echo ""
+# echo ""
+# ../../../processing_tools/bootimg_tools/unmkbootimg -i ../boot.img
+# cd ../boot
+# gzip -dc ../unpack/ramdisk.cpio.gz | cpio -i
+# cd ../../../
+# echo ""
+# echo ""
+# echo "==========================================================="
+# echo ""
+# echo ""
 
 
 # Copying the required files to make final boot.img
 $green
 echo ""
 echo ""
-echo "Copying output files to make the final boot.img..."
+echo "Copying output files to make the final zip..."
 echo ""
 echo ""
-cp arch/arm/boot/zImage arch/arm/boot/boot.img-zImage
-rm output/bootimg_processing/bootimage/unpack/boot.img-zImage
-cp arch/arm/boot/boot.img-zImage output/bootimg_processing/unpack/boot.img-zImage	
-rm boot.img-zImage
+cp arch/arm/boot/zImage output/flashablezip/kernel/zImage
+# rm output/bootimg_processing/bootimage/unpack/boot.img-zImage
+# cp arch/arm/boot/boot.img-zImage output/bootimg_processing/unpack/boot.img-zImage	
+# rm boot.img-zImage
 echo ""
 echo ""
 echo "==========================================================="
@@ -180,28 +180,28 @@ echo ""
 
 
 # Making final boot.img
-$blue
-echo ""
-echo ""
-echo "Making output boot.img..."
-echo ""
-echo ""
-cd output/bootimg_processing/outputbootimg
+# $blue
+# echo ""
+# echo ""
+# echo "Making output boot.img..."
+# echo ""
+# echo ""
+# cd output/bootimg_processing/outputbootimg
 
-../../../processing_tools/bootimg_tools/mkbootfs ../boot | gzip > ../unpack/boot.img-ramdisk-new.gz
+# ../../../processing_tools/bootimg_tools/mkbootfs ../boot | gzip > ../unpack/boot.img-ramdisk-new.gz
 
-rm -rf ../../output/bootimg_processing/boot.img
-cd ../../../
+# rm -rf ../../output/bootimg_processing/boot.img
+# cd ../../../
 
-processing_tools/bootimg_tools/mkbootimg --kernel output/bootimg_processing/unpack/boot.img-zImage --ramdisk output/bootimg_processing/unpack/boot.img-ramdisk-new.gz -o output/bootimg_processing/outputbootimg/boot.img --base 0 --pagesize 4096 --kernel_offset 0xa2008000 --ramdisk_offset 0xa3000000 --second_offset 0xa2f00000 --tags_offset 0xa2000100 --cmdline 'console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.console=ttyS0 vc-cma-mem=0/176M@0xCB000000'
+# processing_tools/bootimg_tools/mkbootimg --kernel output/bootimg_processing/unpack/boot.img-zImage --ramdisk output/bootimg_processing/unpack/boot.img-ramdisk-new.gz -o output/bootimg_processing/outputbootimg/boot.img --base 0 --pagesize 4096 --kernel_offset 0xa2008000 --ramdisk_offset 0xa3000000 --second_offset 0xa2f00000 --tags_offset 0xa2000100 --cmdline 'console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.console=ttyS0 vc-cma-mem=0/176M@0xCB000000'
 
-rm -rf unpack
-rm -rf boot
-echo ""
-echo ""
-echo "==========================================================="
-echo ""
-echo ""
+# rm -rf unpack
+# rm -rf boot
+# echo ""
+# echo ""
+# echo "==========================================================="
+# echo ""
+# echo ""
 
 
 # Making output flashable zip
@@ -218,10 +218,12 @@ mkdir outputzip/system/app
 mkdir outputzip/system/lib
 mkdir system
 mkdir system/lib
+mkdir kernel
 
 cp -avr META-INF/ outputzip/
 cp -avr system/lib/modules/ outputzip/system/lib/
-cp ../bootimg_processing/outputbootimg/boot.img outputzip/boot.img
+cp -avr kernel/ outputzip/
+# cp ../bootimg_processing/outputbootimg/boot.img outputzip/boot.img
 # cp ../performance_control_app/PerformanceControl-2.1.11.apk outputzip/system/app/PerformanceControl-2.1.11.apk
 
 echo ""
@@ -256,6 +258,7 @@ echo ""
 
 rm -rf META-INF
 rm -rf system
+rm -rf kernel
 rm boot.img
 cd ../../
 rm -rf ../arch/arm/boot/boot.img-zImage
