@@ -1,5 +1,7 @@
 # nebula kernel compilation script
 
+# Get intial time of script startup
+res1=$(date +%s.%N)
 
 # Confirm 'make clean'
 clear
@@ -264,6 +266,15 @@ echo ""
 echo "==========================================================="
 echo ""
 echo ""
+
+# Get elapsed time
+$blue
+res2=$(date +%s.%N)
+echo -e ""
+echo -e ""
+echo "${bldgrn}Total time elapsed: ${txtrst}${grn}$(echo "($res2 - $res1) / 60"|bc ) minutes ($(echo "$res2 - $res1"|bc ) seconds) ${txtrst}"
+echo -e ""
+echo -e ""
 
 
 # End of script
