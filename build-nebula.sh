@@ -272,6 +272,21 @@ echo "==========================================================="
 echo ""
 echo ""
 
+
+# Cleaning 
+echo ""
+echo -e "\n\nCleaning... \n\n"
+echo ""
+echo ""
+make clean mrproper
+git checkout drivers/misc/vc04_services/interface/vchiq_arm/vchiq_version.c
+echo ""
+echo ""
+echo "==========================================================="
+echo ""
+echo ""
+
+
 # Get elapsed time
 $blue
 res2=$(date +%s.%N)
@@ -287,5 +302,5 @@ $red
 echo ""
 echo "*************END OF KERNEL COMPILATION SCRIPT**************"
 echo ""
-echo "*********************HAPPY FLASHING************************"
+echo ""
 $normal
