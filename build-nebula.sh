@@ -266,6 +266,7 @@ cd ../../
 rm -rf ../arch/arm/boot/boot.img-zImage
 rm -rf bootimg_processing
 rm -rf flashablezip/system
+cd ..
 echo ""
 echo ""
 echo "==========================================================="
