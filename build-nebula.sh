@@ -34,7 +34,7 @@ date="date"
 
 # Kernel compilation specific details
 export KBUILD_BUILD_USER="shubhang"
-KERNEL_BUILD="nebula-v2.5-xenon92-`date '+%Y%m%d-%H%M'`"
+KERNEL_BUILD="nebula-v2.6-xenon92-`date '+%Y%m%d-%H%M'`"
 TOOLCHAIN=~/kernel/toolchains/linaro-4.7.4-14.04/bin/arm-cortex_a9-linux-gnueabihf-
 
 
