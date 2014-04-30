@@ -135,7 +135,7 @@ config CPU_FREQ_DEFAULT_GOV_LULZACTIVE
 	Use the CPUFreq governor 'lulzactive' as default.
 
 config CPU_FREQ_DEFAULT_GOV_SMARTASSH3
-	bool "smartassH3
+	bool "smartassH3"
 	select CPU_FREQ_GOV_SMARTASSH3
 	help
 	Use the CPUFreq governor 'smartassH3' as default
