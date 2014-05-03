@@ -51,6 +51,7 @@ ui_print("Kernel installed successfully...");
 ui_print(" ");
 ui_print("Updating modules...");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p19", "/system");
+delete_recursive("/system/lib/modules");
 package_extract_dir("system", "/system");
 unmount("/system");
 ui_print(" ");
