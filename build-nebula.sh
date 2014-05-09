@@ -21,15 +21,22 @@ echo "      )\()) (   ( )\     (  (()/(    )\       )\()) (   (()/(  )\()) (   (
 echo "     ((_)\  )\  )((_)    )\  /(_))((((_)(   |((_)\  )\   /(_))((_)\  )\   /(_)) ";
 echo "      _((_)((_)((_)_  _ ((_)(_))   )\ _ )\  |_ ((_)((_) (_))   _((_)((_) (_))   ";
 echo "     | \| || __|| _ )| | | || |    (_)_\(_) | |/ / | __|| _ \ | \| || __|| |    ";
-echo "     | .\` || _| | _ \| |_| || |__   / _ \   |   <  | _| |   / | .\` || _| | |__  ";
+echo "     | .  || _| | _ \| |_| || |__   / _ \   |   <  | _| |   / | .  || _| | |__  ";
 echo "     |_|\_||___||___/ \___/ |____| /_/ \_\  |_|\_\ |___||_|_\ |_|\_||___||____| ";
 echo "                                                                                ";
 echo ""
 echo ""
 echo ""
 
-# Set terminal font to normal
+
+# Confirm device
 tput sgr0
+echo -e "\n\nCompile nebula kernel for? \n"
+echo -e "1. i9082 - Galaxy Grand"
+echo -e "2. s2vep - Galaxy S2 Plus"
+echo ""
+read askDevice
+
 
 
 # Export paths and variables in shell
@@ -54,25 +61,22 @@ date="date"
 
 # Kernel compilation specific details
 export KBUILD_BUILD_USER="shubhang"
-KERNEL_BUILD="nebula-v3.00-xenon92-`date '+%Y%m%d-%H%M'`"
 TOOLCHAIN=~/kernel/toolchains/linaro-4.7.4-14.04/bin/arm-cortex_a9-linux-gnueabihf-
+
+if [ "$askDevice" == "2" ]
+	then
+		KERNEL_BUILD="nebula-v3.00-s2vep-xenon92-`date '+%Y%m%d-%H%M'`"
+	else
+		KERNEL_BUILD="nebula-v3.00-i9082-xenon92-`date '+%Y%m%d-%H%M'`"
+fi
+
+
+
 
 
 # Variables
 MODULES=./output/flashablezip/system/lib/modules
 
-
-# Cleaning files from previous build
-$cyan
-if [ "$askclean" == "1" ]
-then
-	echo ""
-	echo ""
-        echo -e "\n\nCleaning... \n\n"
-	echo ""
-	echo ""
-        make clean mrproper
-fi
 
 rm -rf arch/arm/boot/boot.img-zImage
 rm -rf output/bootimg_processing
@@ -93,10 +97,26 @@ cp ../drivers/voicesolution/VoiceSolution.ko drivers/voicesolution/
 $violet
 echo ""
 echo ""
-echo "Making config for nebula kernel..."
-echo ""
-echo ""
-make nebula_i9082_defconfig
+
+$cyan
+if [ "$askDevice" == "2" ]
+
+	then
+		echo ""
+		echo ""
+	    echo -e "\n\n     Compiling for s2vep... \n\n"
+		echo ""
+		echo ""
+	        make nebula_s2vep_defconfig
+	else
+		echo ""
+		echo ""
+	    echo -e "\n\n     Compiling for i9082... \n\n"
+		echo ""
+		echo ""
+	        make nebula_i9082_defconfig
+fi
+
 echo ""
 echo ""
 echo "==========================================================="
