@@ -3,13 +3,33 @@
 # Get intial time of script startup
 res1=$(date +%s.%N)
 
-# Confirm 'make clean'
-clear
-echo "Compiling nebula kernel..."
-echo -e "\n\nDo you want to make clean? \n"
-echo -e "1. Yes"
-echo -e "2. No"
-read askclean
+
+
+# No scrollback buffer
+echo -e '\0033\0143'
+
+
+tput bold
+tput setaf 1
+
+echo ""
+echo ""
+echo ""
+echo "         )                   (                   )       (        )       (     ";
+echo "      ( /(        (          )\ )    (        ( /(       )\ )  ( /(       )\ )  ";
+echo "      )\()) (   ( )\     (  (()/(    )\       )\()) (   (()/(  )\()) (   (()/(  ";
+echo "     ((_)\  )\  )((_)    )\  /(_))((((_)(   |((_)\  )\   /(_))((_)\  )\   /(_)) ";
+echo "      _((_)((_)((_)_  _ ((_)(_))   )\ _ )\  |_ ((_)((_) (_))   _((_)((_) (_))   ";
+echo "     | \| || __|| _ )| | | || |    (_)_\(_) | |/ / | __|| _ \ | \| || __|| |    ";
+echo "     | .\` || _| | _ \| |_| || |__   / _ \   |   <  | _| |   / | .\` || _| | |__  ";
+echo "     |_|\_||___||___/ \___/ |____| /_/ \_\  |_|\_\ |___||_|_\ |_|\_||___||____| ";
+echo "                                                                                ";
+echo ""
+echo ""
+echo ""
+
+# Set terminal font to normal
+tput sgr0
 
 
 # Export paths and variables in shell
