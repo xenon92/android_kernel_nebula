@@ -69,6 +69,7 @@ if [ "$askDevice" == "2" ]
 
 		# Fixing s2vep vibrations
 		patch -p1 < patch_files/s2vep_fix_vibrations.diff
+		patch -p1 < patch_files/s2vep_updater_script.diff
 
 	else
 		KERNEL_BUILD="nebula-v3.00-i9082-xenon92-`date '+%Y%m%d-%H%M'`"
@@ -344,6 +345,7 @@ if [ "$compilationSuccessful" == "1" ]
 		make clean mrproper
 		git checkout drivers/misc/vc04_services/interface/vchiq_arm/vchiq_version.c
 		git checkout drivers/motor/ss_brcm_drv2603_haptic.c
+		git checkout output/flashablezip/META-INF/com/google/android/updater-script
 		echo ""
 		echo ""
 		echo "==========================================================="
