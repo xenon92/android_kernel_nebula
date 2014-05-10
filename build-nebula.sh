@@ -139,6 +139,18 @@ echo ""
 echo ""
 
 
+
+# Check if build was successful
+
+compilationSuccessful="0"
+FinalzImage="arch/arm/boot/zImage"
+if [ -f $FinalzImage ]
+	then
+		compilationSuccessful="1"
+fi	
+
+
+
 # Processing boot.img
 # $yellow
 # echo ""
@@ -173,159 +185,181 @@ echo ""
 # echo ""
 
 
-# Copying the required files to make final boot.img
-$green
-echo ""
-echo ""
-echo "Copying output files to make the final zip..."
-echo ""
-echo ""
-cp arch/arm/boot/zImage output/flashablezip/kernel/zImage
-# rm output/bootimg_processing/bootimage/unpack/boot.img-zImage
-# cp arch/arm/boot/boot.img-zImage output/bootimg_processing/unpack/boot.img-zImage	
-# rm boot.img-zImage
-echo ""
-echo ""
-echo "==========================================================="
-echo ""
-echo ""
+
+# Perform the packing of kernel only if build successful
+
+if [ "$compilationSuccessful" == "1" ]
+	then
+
+		# Copying the required files to make final boot.img
+		$green
+		echo ""
+		echo ""
+		echo "Copying output files to make the final zip..."
+		echo ""
+		echo ""
+		cp arch/arm/boot/zImage output/flashablezip/kernel/zImage
+		# rm output/bootimg_processing/bootimage/unpack/boot.img-zImage
+		# cp arch/arm/boot/boot.img-zImage output/bootimg_processing/unpack/boot.img-zImage	
+		# rm boot.img-zImage
+		echo ""
+		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
 
 
-# Processing modules to be packed along with final boot.img
-cd output/flashablezip
-mkdir system
-mkdir system/app
-mkdir system/lib
-mkdir system/lib/modules
-cd ../../
+		# Processing modules to be packed along with final boot.img
+		cd output/flashablezip
+		mkdir system
+		mkdir system/app
+		mkdir system/lib
+		mkdir system/lib/modules
+		cd ../../
 
-find -name '*.ko' -exec cp -av {} $MODULES/ \;
+		find -name '*.ko' -exec cp -av {} $MODULES/ \;
 
-$red
-echo ""
-echo ""
-echo "Stripping Modules..."
-echo ""
-echo ""
-cd $MODULES
-for m in $(find . | grep .ko | grep './')
-do echo $m
-$TOOLCHAIN-strip --strip-unneeded $m
-done
-cd ../../../../../
-echo ""
-echo ""
-echo "==========================================================="
-echo ""
-echo ""
-
-
-# Making final boot.img
-# $blue
-# echo ""
-# echo ""
-# echo "Making output boot.img..."
-# echo ""
-# echo ""
-# cd output/bootimg_processing/outputbootimg
-
-# ../../../processing_tools/bootimg_tools/mkbootfs ../boot | gzip > ../unpack/boot.img-ramdisk-new.gz
-
-# rm -rf ../../output/bootimg_processing/boot.img
-# cd ../../../
-
-# processing_tools/bootimg_tools/mkbootimg --kernel output/bootimg_processing/unpack/boot.img-zImage --ramdisk output/bootimg_processing/unpack/boot.img-ramdisk-new.gz -o output/bootimg_processing/outputbootimg/boot.img --base 0 --pagesize 4096 --kernel_offset 0xa2008000 --ramdisk_offset 0xa3000000 --second_offset 0xa2f00000 --tags_offset 0xa2000100 --cmdline 'console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.console=ttyS0 vc-cma-mem=0/176M@0xCB000000'
-
-# rm -rf unpack
-# rm -rf boot
-# echo ""
-# echo ""
-# echo "==========================================================="
-# echo ""
-# echo ""
+		$red
+		echo ""
+		echo ""
+		echo "Stripping Modules..."
+		echo ""
+		echo ""
+		cd $MODULES
+		for m in $(find . | grep .ko | grep './')
+		do echo $m
+		$TOOLCHAIN-strip --strip-unneeded $m
+		done
+		cd ../../../../../
+		echo ""
+		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
 
 
-# Making output flashable zip
-$green
-echo ""
-echo ""
-echo "Making output flashable zip and packing everything..."
-echo ""
-echo ""
-cd output/flashablezip/
-mkdir outputzip
-mkdir outputzip/system
-mkdir outputzip/system/app
-mkdir outputzip/system/lib
-mkdir system
-mkdir system/lib
-mkdir kernel
+		# Making final boot.img
+		# $blue
+		# echo ""
+		# echo ""
+		# echo "Making output boot.img..."
+		# echo ""
+		# echo ""
+		# cd output/bootimg_processing/outputbootimg
 
-cp -avr META-INF/ outputzip/
-cp -avr system/lib/modules/ outputzip/system/lib/
-cp -avr kernel/ outputzip/
-# cp ../bootimg_processing/outputbootimg/boot.img outputzip/boot.img
-# cp ../performance_control_app/PerformanceControl-2.1.11.apk outputzip/system/app/PerformanceControl-2.1.11.apk
+		# ../../../processing_tools/bootimg_tools/mkbootfs ../boot | gzip > ../unpack/boot.img-ramdisk-new.gz
 
-echo ""
-echo ""
-echo "Moving old zip file..."
-echo ""
-echo ""
-mkdir old_builds_zip
-mv outputzip/*.zip old_builds_zip/
+		# rm -rf ../../output/bootimg_processing/boot.img
+		# cd ../../../
 
-echo ""
-echo ""
-echo "Packing files into zip..."
-echo ""
-echo ""
-cd outputzip
-zip -r $KERNEL_BUILD.zip *
-echo ""
-echo ""
-echo "==========================================================="
-echo ""
-echo ""
+		# processing_tools/bootimg_tools/mkbootimg --kernel output/bootimg_processing/unpack/boot.img-zImage --ramdisk output/bootimg_processing/unpack/boot.img-ramdisk-new.gz -o output/bootimg_processing/outputbootimg/boot.img --base 0 --pagesize 4096 --kernel_offset 0xa2008000 --ramdisk_offset 0xa3000000 --second_offset 0xa2f00000 --tags_offset 0xa2000100 --cmdline 'console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.console=ttyS0 vc-cma-mem=0/176M@0xCB000000'
+
+		# rm -rf unpack
+		# rm -rf boot
+		# echo ""
+		# echo ""
+		# echo "==========================================================="
+		# echo ""
+		# echo ""
 
 
-# Cleaning
-$blue
-echo ""
-echo ""
-echo "Cleaning..."
-echo ""
-echo ""
+		# Making output flashable zip
+		$green
+		echo ""
+		echo ""
+		echo "Making output flashable zip and packing everything..."
+		echo ""
+		echo ""
+		cd output/flashablezip/
+		mkdir outputzip
+		mkdir outputzip/system
+		mkdir outputzip/system/app
+		mkdir outputzip/system/lib
+		mkdir system
+		mkdir system/lib
+		mkdir kernel
 
-rm -rf META-INF
-rm -rf system
-rm -rf kernel
-rm boot.img
-rm ../kernel/zImage
-cd ../../
-rm -rf ../arch/arm/boot/boot.img-zImage
-rm -rf bootimg_processing
-rm -rf flashablezip/system
-cd ..
-echo ""
-echo ""
-echo "==========================================================="
-echo ""
-echo ""
+		cp -avr META-INF/ outputzip/
+		cp -avr system/lib/modules/ outputzip/system/lib/
+		cp -avr kernel/ outputzip/
+		# cp ../bootimg_processing/outputbootimg/boot.img outputzip/boot.img
+		# cp ../performance_control_app/PerformanceControl-2.1.11.apk outputzip/system/app/PerformanceControl-2.1.11.apk
+
+		echo ""
+		echo ""
+		echo "Moving old zip file..."
+		echo ""
+		echo ""
+		mkdir old_builds_zip
+		mv outputzip/*.zip old_builds_zip/
+
+		echo ""
+		echo ""
+		echo "Packing files into zip..."
+		echo ""
+		echo ""
+		cd outputzip
+		zip -r $KERNEL_BUILD.zip *
+		echo ""
+		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
 
 
-# Cleaning 
-echo ""
-echo -e "\n\nCleaning... \n\n"
-echo ""
-echo ""
-make clean mrproper
-git checkout drivers/misc/vc04_services/interface/vchiq_arm/vchiq_version.c
-echo ""
-echo ""
-echo "==========================================================="
-echo ""
-echo ""
+		# Cleaning
+		$blue
+		echo ""
+		echo ""
+		echo "Cleaning..."
+		echo ""
+		echo ""
+
+		rm -rf META-INF
+		rm -rf system
+		rm -rf kernel
+		rm boot.img
+		rm ../kernel/zImage
+		cd ../../
+		rm -rf ../arch/arm/boot/boot.img-zImage
+		rm -rf bootimg_processing
+		rm -rf flashablezip/system
+		cd ..
+		echo ""
+		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
+
+
+		# Cleaning 
+		echo ""
+		echo -e "\n\nCleaning... \n\n"
+		echo ""
+		echo ""
+		make clean mrproper
+		git checkout drivers/misc/vc04_services/interface/vchiq_arm/vchiq_version.c
+		echo ""
+		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
+
+	else
+		$violet
+		echo ""
+		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
+		echo "Build unsuccessful"
+		echo ""
+		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
+
+fi
 
 
 # Get elapsed time
