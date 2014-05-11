@@ -348,6 +348,17 @@ if [ "$compilationSuccessful" == "1" ]
 		echo ""
 		echo ""
 
+
+		echo ""
+		echo ""
+		echo " >> >> OUTPUT FILE \n\n"
+		echo ""
+
+		ls -sh output/flashablezip/outputzip/
+
+		echo ""
+		echo ""
+
 	else
 		$violet
 		echo ""
@@ -370,7 +381,7 @@ $blue
 res2=$(date +%s.%N)
 echo -e ""
 echo -e ""
-echo "${bldgrn}Total time elapsed: ${txtrst}${grn}$(echo "($res2 - $res1) / 60"|bc ) minutes ($(echo "$res2 - $res1"|bc ) seconds) ${txtrst}"
+echo "${bldgrn}TOTAL TIME ELASPED: ${txtrst}${grn}$(echo "($res2 - $res1) / 60"|bc ) MINUTES ($(echo "$res2 - $res1"|bc ) SECONDS) ${txtrst}"
 echo -e ""
 echo -e ""
 
