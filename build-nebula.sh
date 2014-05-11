@@ -65,14 +65,14 @@ TOOLCHAIN=~/kernel/toolchains/linaro-4.7.4-14.04/bin/arm-cortex_a9-linux-gnueabi
 
 if [ "$askDevice" == "2" ]
 	then
-		KERNEL_BUILD="nebula-v3.01-s2vep-xenon92-`date '+%Y%m%d-%H%M'`"
+		KERNEL_BUILD="nebula-v3.02-s2vep-xenon92-`date '+%Y%m%d-%H%M'`"
 
 		# Fixing s2vep vibrations
 		patch -p1 < patch_files/s2vep_fix_vibrations.diff
 		patch -p1 < patch_files/s2vep_updater_script.diff
 
 	else
-		KERNEL_BUILD="nebula-v3.01-i9082-xenon92-`date '+%Y%m%d-%H%M'`"
+		KERNEL_BUILD="nebula-v3.02-i9082-xenon92-`date '+%Y%m%d-%H%M'`"
 fi
 
 
