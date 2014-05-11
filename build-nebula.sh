@@ -31,12 +31,15 @@ echo ""
 
 # Confirm device
 tput sgr0
-echo -e "\n\nCompile nebula kernel for? \n"
-echo -e "1. i9082 - Galaxy Grand"
-echo -e "2. s2vep - Galaxy S2 Plus"
+echo -e "\n\n >> >> COMPILE NEBULA KERNEL FOR? \n\n"
+echo -e "1. I9082 - GALAXY GRAND"
+echo -e "2. S2VEP - GALAXY S2 PLUS"
 echo ""
 read askDevice
 
+
+# Clear terminal
+clear
 
 
 # Export paths and variables in shell
@@ -109,14 +112,14 @@ if [ "$askDevice" == "2" ]
 	then
 		echo ""
 		echo ""
-	    echo -e "\n\n     Compiling for s2vep... \n\n"
+	    echo -e "\n\n >> >> MAKING CONFIG FOR S2VEP \n\n"
 		echo ""
 		echo ""
 	        make nebula_s2vep_defconfig
 	else
 		echo ""
 		echo ""
-	    echo -e "\n\n     Compiling for i9082... \n\n"
+	    echo -e "\n\n >> >> MAKING CONFIG FOR I9082 \n\n"
 		echo ""
 		echo ""
 	        make nebula_i9082_defconfig
@@ -133,7 +136,7 @@ echo ""
 $red
 echo ""
 echo ""
-echo "Compiling kernel..."
+echo " >> >> COMPILING KERNEL"
 echo ""
 echo ""
 make -j8
@@ -200,7 +203,7 @@ if [ "$compilationSuccessful" == "1" ]
 		$green
 		echo ""
 		echo ""
-		echo "Copying output files to make the final zip..."
+		echo " >> >> COPYING OUTPUT FILES TO MAKE FINAL ZIP "
 		echo ""
 		echo ""
 		cp arch/arm/boot/zImage output/flashablezip/kernel/zImage
@@ -227,7 +230,7 @@ if [ "$compilationSuccessful" == "1" ]
 		$red
 		echo ""
 		echo ""
-		echo "Stripping Modules..."
+		echo " >> >> STRIPPING MODULES"
 		echo ""
 		echo ""
 		cd $MODULES
@@ -272,7 +275,7 @@ if [ "$compilationSuccessful" == "1" ]
 		$green
 		echo ""
 		echo ""
-		echo "Making output flashable zip and packing everything..."
+		echo " >> >> MAKING OUTPUT FLASHABLE ZIP"
 		echo ""
 		echo ""
 		cd output/flashablezip/
@@ -292,7 +295,7 @@ if [ "$compilationSuccessful" == "1" ]
 
 		echo ""
 		echo ""
-		echo "Moving old zip file..."
+		echo " >> >> MOVING OLD KERNEL ZIP FILES TO BACKUP FOLDER"
 		echo ""
 		echo ""
 		mkdir old_builds_zip
@@ -300,7 +303,7 @@ if [ "$compilationSuccessful" == "1" ]
 
 		echo ""
 		echo ""
-		echo "Packing files into zip..."
+		echo " >> >> PACKING FILES INTO ZIP"
 		echo ""
 		echo ""
 		cd outputzip
@@ -316,7 +319,7 @@ if [ "$compilationSuccessful" == "1" ]
 		$blue
 		echo ""
 		echo ""
-		echo "Cleaning..."
+		echo " >> >> CLEANING"
 		echo ""
 		echo ""
 
@@ -333,13 +336,6 @@ if [ "$compilationSuccessful" == "1" ]
 		echo ""
 		echo ""
 		echo "==========================================================="
-		echo ""
-		echo ""
-
-
-		# Cleaning 
-		echo ""
-		echo -e "\n\nCleaning... \n\n"
 		echo ""
 		echo ""
 		make clean mrproper
@@ -359,7 +355,7 @@ if [ "$compilationSuccessful" == "1" ]
 		echo "==========================================================="
 		echo ""
 		echo ""
-		echo "Build unsuccessful"
+		echo " >> >> BUILD UNSUCCESSFUL"
 		echo ""
 		echo ""
 		echo "==========================================================="
@@ -378,11 +374,4 @@ echo "${bldgrn}Total time elapsed: ${txtrst}${grn}$(echo "($res2 - $res1) / 60"|
 echo -e ""
 echo -e ""
 
-
-# End of script
-$red
-echo ""
-echo "*************END OF KERNEL COMPILATION SCRIPT**************"
-echo ""
-echo ""
 $normal
