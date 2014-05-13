@@ -354,7 +354,9 @@ if [ "$compilationSuccessful" == "1" ]
 
 		echo ""
 		echo ""
-		echo " >> >> OUTPUT FILE \n\n"
+		echo " >> >> OUTPUT FILE"
+		echo ""
+		echo ""
 		echo ""
 
 		ls -sh output/flashablezip/outputzip/
