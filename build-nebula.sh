@@ -349,6 +349,9 @@ if [ "$compilationSuccessful" == "1" ]
 		echo ""
 
 
+		tput bold
+		tput setaf 1
+
 		echo ""
 		echo ""
 		echo " >> >> OUTPUT FILE \n\n"
@@ -360,7 +363,9 @@ if [ "$compilationSuccessful" == "1" ]
 		echo ""
 
 	else
-		$violet
+		tput bold
+		tput setaf 1
+		
 		echo ""
 		echo ""
 		echo "==========================================================="
