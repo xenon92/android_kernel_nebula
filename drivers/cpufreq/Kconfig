@@ -134,6 +134,12 @@ config CPU_FREQ_DEFAULT_GOV_LULZACTIVE
 	help
 	Use the CPUFreq governor 'lulzactive' as default.
 
+config CPU_FREQ_DEFAULT_GOV_LULZACTIVEQ
+	bool "lulzactiveq"
+	select CPU_FREQ_GOV_LULZACTIVEQ
+	help
+	Use the CPUFreq governor 'lulzactiveq' as default
+
 config CPU_FREQ_DEFAULT_GOV_SMARTASSH3
 	bool "smartassH3"
 	select CPU_FREQ_GOV_SMARTASSH3
@@ -250,6 +256,14 @@ config CPU_FREQ_GOV_LULZACTIVE
 	depends on CPU_FREQ
 	help
 	 'lulzactive' -  based on Interactive & Smartass governors.
+
+ 	 If in doubt, say N.
+
+config CPU_FREQ_GOV_LULZACTIVEQ
+        tristate "'lulzactiveq' cpufreq governor"
+        depends on CPU_FREQ
+        help
+         'lulzactiveq' - hotplug mechanism added in lulzactive
 
  	 If in doubt, say N.
 

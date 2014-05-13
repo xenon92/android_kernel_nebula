@@ -370,6 +370,9 @@ extern struct cpufreq_governor cpufreq_gov_lulzactive;
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_smartassH3)
 extern struct cpufreq_governor cpufreq_gov_smartassH3;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_smartassH3)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_LULZACTIVEQ)
+extern struct cpufreq_governor cpufreq_gov_lulzactiveq;
+#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_lulzactiveq)
 #endif
 
 
