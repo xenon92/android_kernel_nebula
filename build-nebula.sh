@@ -359,10 +359,44 @@ if [ "$compilationSuccessful" == "1" ]
 		echo ""
 		echo ""
 
-		ls -sh output/flashablezip/outputzip/
+		$violet
+		echo -n " >> FILE SIZE: "
+		ls -sh output/flashablezip/outputzip/ | grep 'nebula' | cut -d: -f1 | awk '{print $1}'
+		echo ""
+		echo ""
+		tput setaf 1
+		echo -n " >> KERNEL ZIP: "
+		ls -sh output/flashablezip/outputzip/ | grep 'nebula' | cut -d: -f1 | awk '{print $2}'
+		$yellow
 
 		echo ""
 		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
+
+		$yellow
+		echo ""
+		echo ""
+		echo " >> >> NETWORK DETAILS"
+		echo ""
+		echo ""
+		echo ""
+		$violet
+		echo -n " >> NETWORK NAME: "
+		iwgetid | grep 'ESSID:' | cut -d: -f2
+		echo ""
+		echo ""
+		tput setaf 1
+		echo -n " >> LOCAL IP: "
+		ifconfig wlan0 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}'
+		$yellow
+		echo ""
+		echo ""
+		echo "==========================================================="
+		echo ""
+		echo ""
+
 
 	else
 		tput bold
