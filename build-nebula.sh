@@ -352,17 +352,14 @@ if [ "$compilationSuccessful" == "1" ]
 		tput bold
 		tput setaf 1
 
-		echo ""
-		echo ""
+		# Details of the output kernel zip file
+
 		echo " >> >> OUTPUT FILE"
 		echo ""
 		echo ""
-		echo ""
-
 		$violet
 		echo -n " >> FILE SIZE: "
 		ls -sh output/flashablezip/outputzip/ | grep 'nebula' | cut -d: -f1 | awk '{print $1}'
-		echo ""
 		echo ""
 		tput setaf 1
 		echo -n " >> KERNEL ZIP: "
@@ -375,17 +372,15 @@ if [ "$compilationSuccessful" == "1" ]
 		echo ""
 		echo ""
 
+
+		# Details of the WLAN network connected
 		$yellow
-		echo ""
-		echo ""
 		echo " >> >> NETWORK DETAILS"
-		echo ""
 		echo ""
 		echo ""
 		$violet
 		echo -n " >> NETWORK NAME: "
 		iwgetid | grep 'ESSID:' | cut -d: -f2
-		echo ""
 		echo ""
 		tput setaf 1
 		echo -n " >> LOCAL IP: "
