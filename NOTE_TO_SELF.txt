@@ -1,0 +1,18 @@
+NOTE TO SELF
+-----
+
+
+nebula kernel till v2.6 was excellent in battery backup as well as performance.
+
+But v2.8 and v2.9 were not so good in performance even though battery backup
+was good. Antutu scores were less in comparison to v2.6 (not that the scores
+show a complete picture). Phone seemed a bit slow too.
+
+F2FS support in v2.8 and v2.9 had nothing do with it. 
+
+I could have reverted the the commits for v3.00, but that would have been messy. 
+
+I moved v2.x to a new branch and rebased 'nebula-4.4' branch for v3.00
+on v2.6 without the intermediate commits (except F2FS).
+
+'nebula-4.4' (main) branch was kept clean.
