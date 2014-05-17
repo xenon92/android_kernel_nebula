@@ -1,0 +1,10 @@
+NOTE TO SELF
+-----
+
+
+nebula kernel v1.x had random reboots due to the -O3 optimization flag.
+
+Removing the flag would have solved the random reboots, but until I figured that out, 
+I had already started a new branch of v2.x. 
+
+v2.x was started from scratch.
