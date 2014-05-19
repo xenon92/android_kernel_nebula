@@ -65,17 +65,18 @@ date="date"
 # Kernel compilation specific details
 export KBUILD_BUILD_USER="shubhang"
 TOOLCHAIN=~/kernel/toolchains/linaro-4.9.1-14.05/bin/arm-cortex_a9-linux-gnueabihf-
+VERSION=3.11
 
 if [ "$askDevice" == "2" ]
 	then
-		KERNEL_BUILD="nebula-v3.10-s2vep-xenon92-`date '+%Y%m%d-%H%M'`"
+		KERNEL_BUILD="nebula-v$VERSION-s2vep-xenon92-`date '+%Y%m%d-%H%M'`"
 
 		# Fixing s2vep vibrations
 		patch -p1 < patch_files/s2vep_fix_vibrations.diff
 		patch -p1 < patch_files/s2vep_updater_script.diff
 
 	else
-		KERNEL_BUILD="nebula-v3.10-i9082-xenon92-`date '+%Y%m%d-%H%M'`"
+		KERNEL_BUILD="nebula-v$VERSION-i9082-xenon92-`date '+%Y%m%d-%H%M'`"
 fi
 
 
