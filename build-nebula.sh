@@ -43,7 +43,7 @@ clear
 
 
 # Export paths and variables in shell
-export PATH=$PATH:~/kernel/toolchains/linaro-4.9.1-14.04/bin
+export PATH=$PATH:~/kernel/toolchains/linaro-4.9.1-14.05/bin
 export ARCH=arm
 export SUBARCH=arm
 export CROSS_COMPILE=arm-cortex_a9-linux-gnueabihf-
@@ -64,7 +64,7 @@ date="date"
 
 # Kernel compilation specific details
 export KBUILD_BUILD_USER="shubhang"
-TOOLCHAIN=~/kernel/toolchains/linaro-4.9.1-14.04/bin/arm-cortex_a9-linux-gnueabihf-
+TOOLCHAIN=~/kernel/toolchains/linaro-4.9.1-14.05/bin/arm-cortex_a9-linux-gnueabihf-
 
 if [ "$askDevice" == "2" ]
 	then
