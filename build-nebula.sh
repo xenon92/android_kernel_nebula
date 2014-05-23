@@ -65,7 +65,7 @@ date="date"
 # Kernel compilation specific details
 export KBUILD_BUILD_USER="shubhang"
 TOOLCHAIN=~/kernel/toolchains/linaro-4.9.1-14.05/bin/arm-cortex_a9-linux-gnueabihf-
-VERSION=3.11b
+VERSION=3.12
 
 if [ "$askDevice" == "2" ]
 	then
