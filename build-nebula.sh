@@ -140,7 +140,7 @@ echo ""
 echo " >> >> COMPILING KERNEL"
 echo ""
 echo ""
-make -j8
+make -j4
 echo ""
 echo ""
 echo "==========================================================="
